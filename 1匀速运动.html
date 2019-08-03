@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0
+        }
+
+        #box {
+            width: 180px;
+            height: 180px;
+            background-color: red;
+            position: absolute;
+            top: 200px;
+            left: 0px;
+        }
+
+    </style>
+</head>
+<body>
+    <button>run</button>
+    <div id="box"></div> 
+    <script>
+        // 点击按钮 让div匀速运动
+        var btn = document.querySelector("button");
+        var box = document.querySelector("#box");
+        var timer = null;
+        btn.onclick = function() {
+            // 将其他定时器取消
+            clearInterval(timer);
+            //var num = 0;
+            timer = setInterval(function() {
+                //num += 5;
+                //box.style.left = num + "px";
+                box.style.left = box.offsetLeft + 5 + "px";
+                if (box.offsetLeft == 300) {
+                    clearInterval(timer);
+                }
+            },20);
+        }
+    </script>    
+</body>
+</html>

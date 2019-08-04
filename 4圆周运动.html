@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#ball{
+			width: 30px;
+			height: 30px;
+			background: salmon;
+			position: absolute;
+			left: 400px;
+			top: 100px;
+			border-radius:50% ;
+		}
+	</style>
+	<body>
+		<div id="ball"></div>
+	</body>
+</html>
+<script type="text/javascript">
+	var r = 200;
+	var deg = 90;
+	var timer = null;
+	var odiv = document.querySelector("div");
+	//圆心坐标
+	var centerPoint = {
+		x : odiv.offsetLeft +odiv.offsetWidth/2,
+		y : r + odiv.offsetHeight+odiv.offsetTop
+	}
+	timer = setInterval(function(){
+		odiv.style.left =  centerPoint.x + r*Math.cos( deg*Math.PI/180 ) + "px";
+		odiv.style.top = centerPoint.y - r*Math.sin( deg*Math.PI/180 ) +"px" ;
+		deg-=3;
+		//console.log(deg);
+		console.log(r*Math.cos( deg*Math.PI/180 ))
+	},30)
+</script>

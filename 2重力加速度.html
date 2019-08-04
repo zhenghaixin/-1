@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .ball {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            position: absolute;
+            top: 200px;
+            left: 0;
+            background: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <button>飞起来</button>
+    <div class="ball"></div>
+    <script>
+        var btn = document.querySelector("button");
+        var ball = document.querySelector(".ball");
+        var timer = null;
+        var speedX = 6;
+        var speedY = -20;
+        btn.onclick = function() {
+            clearInterval(timer);
+            timer = setInterval(function() {
+                ball.style.left = ball.offsetLeft + speedX + "px";
+                ball.style.top = ball.offsetTop + speedY + "px";
+                var maxT = window.innerHeight - ball.offsetHeight;
+                if (ball.offsetTop > maxT) {
+                    ball.style.top = maxT + "px";
+                    speedY *= -0.8;     
+                    speedX--;
+                    if (speedX<0) {
+                        speedX = 0;
+                        clearInterval(timer);
+                    }
+                }
+                speedY++;
+                console.log(ball.offsetTop);
+            },30)
+        }
+        /*
+          200-20-19-18.... = -10
+          speedY 1
+          -10+1+2+3+.....50 = maxT
+          speedY  50  -40 -39
+          maxT-40-39-38-...... 
+        */
+
+        // 200-20 = 180   180-19 -(20+19+....+1)  
+    </script>
+</body>
+</html>
